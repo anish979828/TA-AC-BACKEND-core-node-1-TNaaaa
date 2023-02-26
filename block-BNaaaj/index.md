@@ -14,6 +14,9 @@ Q. Create 2 files
   4. In app.js, require functions from area.js and execute the areas of given figures and console.log the results.
 
 Q. Write 2 different methods for creating buffer in nodejs using Buffer class.
+
+
+
 - create a fixed length buffer of 12.
 - write code to convert buffer back to string.
 
