@@ -22,6 +22,7 @@ function handleRequest(req,res){
    res.end("My first server in NOdeJS")
 }
 let server1 = http.createServer(handleRequest);
+
 server1.listen(5001,() => {
     console.log("The server is listening on the port 5001")
 });
@@ -44,6 +45,7 @@ function handleRequest(req,res){
 //   - add listener on port 5566
 //   - console request url and request method
 //   - return a text response with requested url and method
+
 function handleRequest(req,res){
     console.log(req.url,req.method);
     res.end(`${req.url} ${req.method}`)
@@ -58,6 +60,7 @@ function handleRequest(req,res){
 //   - also add a callback function to listener with a console `server listening on port 7000`
 //   - return entire request headers in response.
 function handleRequest(req,res){
+    res.end(JSON.stringify(req.headers));
     
  }
  let server4 = http.createServer(handleRequest);
@@ -94,14 +97,14 @@ function handleRequest(req,res){
 
 // Q. Repeat above question using `res.writeHead` to set status code and Content-Type at the same time.
 
-// function handleRequest(req,res){
-//     res.writeHead(202,{"Content-type":"text/html"});
-//     res.end("<h3>Welcome to altcampus</h3>");
-//  }
-//  let server7 = http.createServer(handleRequest);
-//  server7.listen(8000,() => {
-//      console.log("The server is listening on the port 8000")
-//  });
+function handleRequest(req,res){
+    res.writeHead(202,{"Content-type":"text/html"});
+    res.end("<h3>Welcome to altcampus</h3>");
+ }
+ let server7 = http.createServer(handleRequest);
+ server7.listen(8001,() => {
+     console.log("The server is listening on the port 8000")
+ });
 // Q. create a basic node server
 //   - add a listener at port 8888
 //   - add appropriate header for json response
@@ -137,46 +140,47 @@ function handleRequest(req,res){
 //   - handle GET request on '/about' route and return your name in h2 as HTML page.
 //   - add a error handler at last to handle request made on other than above routes with a status code of 404.
 
-// function handleRequest(req,res){
-//     if(req.url == "/" && req.method == "GET"){
-//         res.setHeader("Content-type","text/plain");
-//         res.end("anish");
-//     }else if(req.url == "/about" && req.method == "GET"){
-//         res.setHeader("Content-type","text/html");
-//         res.end("<h2>anish</h2>");
-//     }else{
-//         res.statusCode = 404;
-//         res.end();
-//     }
-//  }
-//  let server10 = http.createServer(handleRequest);
-//  server10.listen(2345,() => {
-//      console.log("The server is listening on the port 2345")
-//  });
+function handleRequest(req,res){
+    if(req.url == "/" && req.method == "GET"){
+        res.setHeader("Content-type","text/plain");
+        res.end("Anish");
+    }
+    if(req.url == "/about" && req.method == "GET"){
+        res.setHeader("Content-type","text/html");
+        res.end("<h2>anish</h2>");
+    }else{
+        res.statusCode = 404;
+        res.end();
+    }
+ }
+ let server10 = http.createServer(handleRequest);
+ server10.listen(2345,() => {
+     console.log("The server is listening on the port 2345")
+ });
     
 
 // Q. Handle 2 requests on same route with different method
-//     1. GET on '/users' route where return a simple HTML form with name and email field
-//     2. POST on '/users' route with a message 'Posted for the second time'.
-// let fs = require("fs");
+// 1. GET on '/users' route where return a simple HTML form with name and email field
+//  2. POST on '/users' route with a message 'Posted for the second time'.
+let fs = require("fs");
 
-// function handleRequest(req,res){
+function handleRequest(req,res){
 
-//     if(req.url == "/users" && req.method == "GET"){
-//         res.setHeader("Content-type","text/html");
-//         fs.createReadStream("./form.html").pipe(res);
-//     }else if(req.url == "/users" && req.method == "POST"){
-//         res.setHeader("Content-type","text/html");
-//         res.end("Posted for the second time");
-//     }else{
-//         res.statusCode = 404;
-//         res.end("page not found");
-//     }
-//  }
-//  let server11 = http.createServer(handleRequest);
-//  server11.listen(2345,() => {
-//      console.log("The server is listening on the port 2345")
-//  });
+  if(req.url == "/users" && req.method == "GET"){
+  res.setHeader("Content-type","text/html");
+        fs.createReadStream("./form.html").pipe(res);
+    }else if(req.url == "/users" && req.method == "POST"){
+  res.setHeader("Content-type","text/html");
+        res.end("Posted for the second time");
+    }else{
+        res.statusCode = 404;
+        res.end("page not found");
+    }
+ }
+ let server11 = http.createServer(handleRequest);
+ server11.listen(2000,() => {
+     console.log("The server is listening on the port 2000")
+ });
 
 
 
