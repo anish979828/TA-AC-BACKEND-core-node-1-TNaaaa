@@ -30,6 +30,7 @@ for example:-
 for example:- 
 
 ```js
+
 // check for css requests using url
 if(req.url.split('.').pop() === 'css') {
   // set header for css file
@@ -40,6 +41,7 @@ if(req.url.split('.').pop() === 'css') {
     res.end(content)
   })
 }
+
 ```
 
 3. handle request for all images in a seperate single router.
